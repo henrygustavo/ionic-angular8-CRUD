@@ -49,7 +49,7 @@ export class ProductDetailPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            this.router.navigate(['']);
+            this.router.navigate(['home']);
           }
         }
       ]
@@ -63,7 +63,7 @@ export class ProductDetailPage implements OnInit {
     await this.api.deleteProduct(id)
       .subscribe(res => {
         this.isLoadingResults = false;
-        this.router.navigate([ '/home' ]);
+        window.location.href = '/';
       }, err => {
         console.log(err);
         this.isLoadingResults = false;

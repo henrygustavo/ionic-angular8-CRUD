@@ -59,7 +59,7 @@ export class ProductEditPage implements OnInit {
       .subscribe((res: any) => {
           const id = res._id;
           this.isLoadingResults = false;
-          this.router.navigate(['/product-details', id]);
+          window.location.href = '/';
         }, (err: any) => {
           console.log(err);
           this.isLoadingResults = false;

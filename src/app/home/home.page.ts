@@ -18,9 +18,12 @@ export class HomePage implements OnInit {
     public api: ApiService,
     public loadingController: LoadingController,
     public router: Router,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute) { 
+ 
+    }
 
   ngOnInit() {
+
     this.getProducts();
   }
 

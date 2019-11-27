@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -29,7 +29,7 @@ export class ProductAddPage implements OnInit {
   constructor(
     private router: Router,
     private api: ApiService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private ngZone: NgZone) { }
 
   ngOnInit() {
     this.productForm = this.formBuilder.group({
@@ -40,12 +40,15 @@ export class ProductAddPage implements OnInit {
   }
 
   onFormSubmit() {
+    
     this.isLoadingResults = true;
     this.api.addProduct(this.productForm.value)
       .subscribe((res: any) => {
           const id = res._id;
           this.isLoadingResults = false;
-          this.router.navigate(['/product-detail', id]);
+          
+            window.location.href = '/';
+
         }, (err: any) => {
           console.log(err);
           this.isLoadingResults = false;
